@@ -13,4 +13,11 @@ feature 'a user signs up' do
 
     expect(page).to have_content('Welcome to Promo!')
   end
+
+  scenario 'with facebook' do
+    stub_auth_response
+    visit new_user_registration_path
+    click_on 'Sign in with Facebook'
+    expect(page).to have_content('Successfully authenticated from Facebook account')
+  end
 end

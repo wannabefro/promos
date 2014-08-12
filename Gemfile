@@ -26,6 +26,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'carrierwave'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'quiet_assets'
@@ -36,6 +38,7 @@ end
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'dotenv-rails'
 end
 
 group :test do
