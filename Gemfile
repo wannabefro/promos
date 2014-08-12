@@ -29,6 +29,7 @@ gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'active_link_to'
+gem 'friendly_id'
 
 group :development do
   gem 'quiet_assets'
