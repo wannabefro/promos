@@ -20,4 +20,11 @@ feature 'a user signs up' do
     click_on 'Sign in with Facebook'
     expect(page).to have_content('Successfully authenticated from Facebook account')
   end
+
+  scenario 'a user should not be signed up if auth fails' do
+    stub_bad_response
+    visit new_user_registration_path
+    click_on 'Sign in with Facebook'
+    expect(page).to have_content("Could not authenticate you from Facebook")
+  end
 end

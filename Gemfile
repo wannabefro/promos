@@ -28,6 +28,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'omniauth-facebook'
+gem 'active_link_to'
 
 group :development do
   gem 'quiet_assets'

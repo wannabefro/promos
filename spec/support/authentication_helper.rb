@@ -1,4 +1,9 @@
 module AuthenticationHelper
+  def stub_bad_response(provider = :facebook)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[provider] = :invalid_credentials
+  end
+
   def stub_auth_response(user = FactoryGirl.build(:user), provider = :facebook)
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[provider] = OmniAuth::AuthHash.new({
