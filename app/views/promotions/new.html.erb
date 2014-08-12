@@ -5,4 +5,5 @@
   <%= f.simple_fields_for :attachments do |p| %>
     <%= p.file_field :attachment, multiple: true, name: "attachments[attachment][]", label: "Attachments" %>
   <% end %>
+  <%= f.submit %>
 <% end %>

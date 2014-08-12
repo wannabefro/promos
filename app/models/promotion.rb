@@ -4,7 +4,7 @@ class Promotion < ActiveRecord::Base
   has_many :attachments, as: :attachable
   accepts_nested_attributes_for :attachments
   
-  enum status: [ :pending ]
+  enum status: [ :pending, :active ]
 
   validates_presence_of :user, :name
 end
