@@ -46,6 +46,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :producion do

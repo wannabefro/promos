@@ -10,4 +10,10 @@ feature 'a user creates a promotion' do
     click_on 'New Promotion'
     expect(page).to have_content('Create a new promotion')
   end
+
+  scenario 'a user can create a promotion' do
+    visit new_promotion_path
+    fill_in 'Name', with: 'Best Promotion Ever'
+   
+  end
 end

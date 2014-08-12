@@ -1,1 +1,8 @@
 <h1>Create a new promotion</h1>
+
+<%= simple_form_for @promotion do |f| %>
+  <%= f.input :name %>
+  <%= f.simple_fields_for :attachments do |p| %>
+    <%= p.file_field :attachment, multiple: true, name: "attachments[attachment][]", label: "Attachments" %>
+  <% end %>
+<% end %>

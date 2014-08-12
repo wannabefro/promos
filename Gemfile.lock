@@ -29,6 +29,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (2.2.0.20140804)
       execjs
@@ -90,6 +91,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.0.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -225,6 +228,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   jquery-rails
+  launchy
   omniauth-facebook
   pg
   quiet_assets
