@@ -16,6 +16,7 @@ feature 'a user creates a promotion' do
 
     visit new_promotion_path
     fill_in 'Name', with: 'Best Promotion Ever'
+    fill_in 'Thank you message', with: 'Thanks!!'
     attach_file('promotion_attachments_attributes_0_attachment', [image('kangaroo.jpg'), image('koala.jpg')])
     click_on 'Create Promotion'
 

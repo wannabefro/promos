@@ -12,4 +12,5 @@ class Promotion < ActiveRecord::Base
   enum status: [ :pending, :active ]
 
   validates_presence_of :user, :name
+  validates_length_of :message, maximum: 500
 end
