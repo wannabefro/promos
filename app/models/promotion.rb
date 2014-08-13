@@ -5,6 +5,8 @@ class Promotion < ActiveRecord::Base
   belongs_to :user
 
   has_many :attachments, as: :attachable
+  has_many :codes
+
   accepts_nested_attributes_for :attachments
 
   TOTAL_ATTACHMENT_FILE_SIZE = 20
