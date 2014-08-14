@@ -2,12 +2,15 @@ class Promotion < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
+  attr_accessor :code_quantity, :code_unique
+
   belongs_to :user
 
   has_many :attachments, as: :attachable
   has_many :codes
 
   accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :codes
 
   TOTAL_ATTACHMENT_FILE_SIZE = 20
   

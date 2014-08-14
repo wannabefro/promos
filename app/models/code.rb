@@ -3,6 +3,8 @@ class Code < ActiveRecord::Base
   belongs_to :promotion
 
   enum status: [ :pending, :active ]
+
+  TYPES = %w(unique single)
   
   validates_presence_of :promotion, :quantity, :status, :unique
 end

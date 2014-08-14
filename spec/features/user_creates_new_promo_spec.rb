@@ -17,12 +17,12 @@ feature 'a user creates a promotion' do
     visit new_promotion_path
     fill_in 'Name', with: 'Best Promotion Ever'
     fill_in 'Thank you message', with: 'Thanks!!'
-    check 'Unique'
-    fill_in 'Quantity', with: 10
+    check 'unique'
+    fill_in 'Code Quantity', with: 10
     attach_file('promotion_attachments_attributes_0_attachment', [image('kangaroo.jpg'), image('koala.jpg')])
     click_on 'Create Promotion'
 
-    expect(Promotion.last.codes).to eql(10)
+    expect(Promotion.last.codes.count).to eql(10)
     expect(Attachment.count).to eql(previous_count + 2)
     expect(page).to have_content('Successfully created promotion')
   end

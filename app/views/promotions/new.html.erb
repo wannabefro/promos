@@ -6,6 +6,8 @@
     hint: "This is a message to show to the user once they've redeemed your code",
     label: "Thank you message"
   %>
+<%= f.input :code_unique, label: 'Unique or Single', as: :check_boxes, collection: Code::TYPES %>
+  <%= f.input :code_quantity, label: 'Code Quantity' %>
   <%= f.simple_fields_for :attachments do |p| %>
     <%= p.file_field :attachment, multiple: true, name: "attachments[attachment][]", label: "Attachments" %>
   <% end %>

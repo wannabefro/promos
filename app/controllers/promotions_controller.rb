@@ -14,6 +14,11 @@ class PromotionsController < ApplicationController
       params[:attachments][:attachment].each do |a|
         @attachment = @promotion.attachments.create!(attachment: a)
       end
+      if params[:promotion][:code_unique][0] == 'unique'
+        params[:promotion][:code_quantity].to_i.times do
+          Code.create!(promotion: @promotion, status: 'active')
+        end
+      end
       redirect_to promotion_path(@promotion), notice: 'Successfully created promotion'
     else
       render :new
