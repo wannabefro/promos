@@ -1,9 +1,13 @@
 class CodeGenerator
+  include ActiveModel::Validations
 
+  validates :quantity, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
+  
   def initialize(kind, quantity, promotion)
     @kind = kind
     @quantity = quantity.to_i
     @promotion = promotion
+    raise self.errors if !self.valid?
   end
 
   def generate
@@ -13,6 +17,10 @@ class CodeGenerator
     when 'single'
       generate_single_code
     end
+  end
+
+  def read_attribute_for_validation(name)
+    self.instance_variable_get("@#{name.to_s}")
   end
 
   private
