@@ -32,6 +32,6 @@ class PromotionsController < ApplicationController
   private
 
   def promotion_params
-    params.require(:promotion).permit(:name, :message, attachment_attributes: [:attachment])
+    params.require(:promotion).permit(:code_quantity, :name, :message, attachment_attributes: [:attachment])
   end
 end

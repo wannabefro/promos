@@ -16,6 +16,8 @@ class CodeGenerator
       generate_unique_codes
     when 'single'
       generate_single_code
+    else
+      raise 'Not a valid kind of code'
     end
   end
 

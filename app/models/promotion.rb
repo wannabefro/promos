@@ -18,4 +18,10 @@ class Promotion < ActiveRecord::Base
 
   validates_presence_of :user, :name
   validates_length_of :message, maximum: 500
+
+  validates_numericality_of :code_quantity, greater_than_or_equal_to: 1, less_than_or_equal_to: 100
+
+  def code_quantity
+    @code_quantity.to_i
+  end
 end
