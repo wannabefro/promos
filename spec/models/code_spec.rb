@@ -7,7 +7,6 @@ describe Code do
   it { should validate_presence_of(:promotion) }
   it { should validate_presence_of(:quantity) }
   it { should validate_presence_of(:status) }
-  it { should validate_presence_of(:unique) }
 
   context '#generate_token' do
     it 'should generate a random token before saving' do

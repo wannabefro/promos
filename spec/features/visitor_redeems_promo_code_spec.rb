@@ -16,6 +16,15 @@ feature 'user redeems promo code' do
     expect(page).to have_content('Sorry that code has already been used')
   end
 
+  scenario 'if code is not unique then the quantity should decrease by 1' do
+    promotion = FactoryGirl.create(:promotion, :with_duplicate_codes)
+    promo_code = promotion.codes.first
+    previous_quantity = promo_code.quantity
+    visit "/#{promo_code.token}"
+    promo_code.reload
+    expect(promo_code.quantity).to eql(previous_quantity - 1)
+  end
+
   scenario 'when a code is redeemed a redemption should be created' do
     previous_count = promo_code.redemptions.count
     visit "/#{token}"

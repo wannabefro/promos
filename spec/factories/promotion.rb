@@ -11,5 +11,11 @@ FactoryGirl.define do
         FactoryGirl.create_list(:code, p.code_quantity, promotion: p)
       end 
     end
+
+    trait :with_duplicate_codes do
+      after(:create) do |p|
+        FactoryGirl.create(:code, quantity: p.code_quantity, unique: false, promotion: p)
+      end
+    end
   end
 end

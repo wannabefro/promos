@@ -4,7 +4,7 @@ class CodeGenerator
   validates :quantity, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
   
   def initialize(kind, quantity, promotion)
-    @kind = kind
+    @kind = kind.empty? ? 'single' : kind
     @quantity = quantity.to_i
     @promotion = promotion
     raise self.errors if !self.valid?
@@ -34,6 +34,6 @@ class CodeGenerator
   end
 
   def generate_single_code
-    Code.create!(promotion: @promotion, status: 'active', quantity: @quantity)
+    Code.create!(promotion: @promotion, status: 'active', quantity: @quantity, unique: false)
   end
 end
