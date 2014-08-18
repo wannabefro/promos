@@ -4,5 +4,12 @@ FactoryGirl.define do
     status 'active'
     message Faker::Lorem.paragraph
     association :user
+    code_quantity 10
+
+    trait :with_unique_codes do
+      after(:create) do |p|
+        FactoryGirl.create_list(:code, p.code_quantity, promotion: p)
+      end 
+    end
   end
 end

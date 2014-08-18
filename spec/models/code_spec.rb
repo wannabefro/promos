@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Code do
   it { should belong_to(:promotion) }
+  it { should have_many(:redemptions) }
 
   it { should validate_presence_of(:promotion) }
   it { should validate_presence_of(:quantity) }

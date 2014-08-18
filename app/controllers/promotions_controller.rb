@@ -29,6 +29,17 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.find(params[:id])
   end
 
+  def redeem
+    @code = Code.where(token: params[:token]).take
+    if @code.active?
+      if @code.redeem(request.remote_ip)
+        @promotion = @code.promotion
+      end
+    else
+      redirect_to root_path, notice: 'Sorry that code has already been used'
+    end
+  end
+
   private
 
   def promotion_params

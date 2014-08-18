@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :promotions, only: [:new, :create, :show]
 
   root 'home#index'
+
+  get '/:token', to: 'promotions#redeem', constraints: {token: /.{10}/}
 end
