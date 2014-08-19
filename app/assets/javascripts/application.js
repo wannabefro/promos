@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require bootstrap-sprockets
+//= require ammap
+//= require maps/worldLow
+//= require_tree .

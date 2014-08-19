@@ -1,1 +1,24 @@
+<div id='map'></div>
 <p><%= redeemed(@promotion.codes) %> codes redeemed</p>
+
+<% content_for :extra_footer do %>
+  <script>
+$(function() {
+    $('#map').height($(window).height() / 2);
+    $.getJSON('/promotions/<%= @promotion.slug %>', function(response) {
+    var map = new AmCharts.AmMap();
+    map.pathToImages = "../assets/maps/";
+    var dataProvider = {
+      map: "worldLow",
+      areas: response
+      }
+    map.dataProvider = dataProvider;
+    map.areasSettings = {
+      autoZoom: true,
+      selectedColor: "#CC0000"
+    };
+    map.write('map');
+    });
+  });
+  </script>
+<% end %>

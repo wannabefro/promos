@@ -8,6 +8,7 @@ class Promotion < ActiveRecord::Base
 
   has_many :attachments, as: :attachable
   has_many :codes, dependent: :destroy
+  has_many :redemptions, through: :codes
 
   accepts_nested_attributes_for :attachments
   accepts_nested_attributes_for :codes

@@ -9,7 +9,7 @@ module Locationable
   end
 
   def get_location
-    self.location = Geokit::Geocoders::IpGeocoder.geocode(ip_address)
+    self.location = Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
     self.save!
   end
 
