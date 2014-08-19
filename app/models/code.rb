@@ -3,7 +3,7 @@ class Code < ActiveRecord::Base
   belongs_to :promotion
   has_many :redemptions
 
-  enum status: [ :pending, :active, :redeemed ]
+  enum status: { pending: 0, active: 1, redeemed: 2 }
 
   TYPES = %w(unique single)
   

@@ -1,5 +1,9 @@
 class PromotionsController < ApplicationController
-  before_action :user_signed_in?
+  before_action :user_signed_in?, except: [:redeem]
+
+  def index
+    @promotions = current_user.promotions
+  end
 
   def new
     @promotion = Promotion.new
