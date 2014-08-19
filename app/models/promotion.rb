@@ -7,7 +7,7 @@ class Promotion < ActiveRecord::Base
   belongs_to :user
 
   has_many :attachments, as: :attachable
-  has_many :codes
+  has_many :codes, dependent: :destroy
 
   accepts_nested_attributes_for :attachments
   accepts_nested_attributes_for :codes
@@ -24,4 +24,5 @@ class Promotion < ActiveRecord::Base
   def code_quantity
     @code_quantity.to_i
   end
+
 end

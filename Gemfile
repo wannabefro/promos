@@ -31,6 +31,7 @@ gem 'omniauth-facebook'
 gem 'active_link_to'
 gem 'friendly_id'
 gem 'geokit-rails'
+gem 'fog'
 
 group :development do
   gem 'quiet_assets'

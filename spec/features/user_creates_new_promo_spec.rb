@@ -17,7 +17,7 @@ feature 'a user creates a promotion' do
     visit new_promotion_path
     fill_in 'Name', with: 'Best Promotion Ever'
     fill_in 'Thank you message', with: 'Thanks!!'
-    check 'unique'
+    choose 'unique'
     fill_in 'Code Quantity', with: 10
     attach_file('promotion_attachments_attributes_0_attachment', [image('kangaroo.jpg'), image('koala.jpg')])
     click_on 'Create Promotion'
@@ -32,6 +32,7 @@ feature 'a user creates a promotion' do
     fill_in 'Name', with: 'Best Promotion Ever'
     fill_in 'Thank you message', with: 'Thanks!!'
     fill_in 'Code Quantity', with: 10
+    choose 'single'
     attach_file('promotion_attachments_attributes_0_attachment', [image('kangaroo.jpg'), image('koala.jpg')])
     click_on 'Create Promotion'
 

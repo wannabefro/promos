@@ -6,7 +6,7 @@ class PromotionsController < ApplicationController
   end
 
   def new
-    @promotion = Promotion.new
+    @promotion = params[:promotion] ? Promotion.new(promotion_params) : Promotion.new
     @attachment = @promotion.attachments.build
   end
 
@@ -14,18 +14,19 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new(promotion_params)
     @promotion.user = current_user
     @promotion.status = 'active'
-    if @promotion.save
-      params[:attachments][:attachment].each do |a|
-        @attachment = @promotion.attachments.create!(attachment: a)
-      end
+    Promotion.transaction do
+      @promotion.save
       begin
-        CodeGenerator.new(params[:promotion][:code_unique][0], params[:promotion][:code_quantity], @promotion).generate
+        params[:attachments][:attachment].each do |a|
+          @attachment = @promotion.attachments.create!(attachment: a)
+        end
+        CodeGenerator.new(params[:promotion][:code_unique], params[:promotion][:code_quantity], @promotion).generate
         redirect_to promotion_path(@promotion), notice: 'Successfully created promotion'
       rescue
-        render :new
+        @_errors = true
+        redirect_to new_promotion_path({promotion: promotion_params}), alert: 'Sorry something went wrong. Please try again'
       end
-    else
-      render :new
+      raise ActiveRecord::Rollback if @_errors
     end
   end
 
