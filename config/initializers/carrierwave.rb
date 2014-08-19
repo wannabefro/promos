@@ -1,10 +1,9 @@
+AttachmentUploader
 if Rails.env.test?
   CarrierWave.configure do |config|
     config.storage = :file
     config.enable_processing = false
   end
-
-  AttachmentUploader
 
   CarrierWave::Uploader::Base.descendants.each do |klass|
     next if klass.anonymous?
@@ -28,6 +27,7 @@ else
       :region                 => ENV['S3_REGION']
     }
     config.fog_directory  = ENV['S3_BUCKET']
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
   end
 end
 
