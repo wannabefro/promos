@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.hostip.info/get_html.php?ip=76.19.98.41&position=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Accept-Encoding
+      - User-Agent
+      Date:
+      - Tue, 19 Aug 2014 13:59:57 GMT
+      Server:
+      - LiteSpeed
+      Connection:
+      - close
+      X-Powered-By:
+      - PHP/5.4.26
+      Content-Type:
+      - text/plain; charset=iso-8859-1
+      Expires:
+      - Wed, 20 Aug 2014 13:59:57 GMT
+      Last-Modified:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Pragma:
+      - "!invalid"
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '113'
+    body:
+      encoding: UTF-8
+      string: |
+        Country: UNITED STATES (US)
+        City: Seattle, WA
+
+        Latitude: 47.6218
+        Longitude: -122.35
+        IP: 76.19.98.41
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:59:57 GMT
+recorded_with: VCR 2.9.2

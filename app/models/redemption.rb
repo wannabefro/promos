@@ -1,4 +1,6 @@
 class Redemption < ActiveRecord::Base
+  include Locationable
+
   belongs_to :code
 
   validates :ip_address, presence: true

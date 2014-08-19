@@ -30,6 +30,7 @@ gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'active_link_to'
 gem 'friendly_id'
+gem 'geokit-rails'
 
 group :development do
   gem 'quiet_assets'
@@ -49,6 +50,8 @@ group :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'launchy'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :producion do

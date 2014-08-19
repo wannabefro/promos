@@ -13,4 +13,13 @@ describe Redemption do
       expect(redemption).to_not be_valid
     end
   end
+
+  context 'ip address' do
+    it 'should return geo data for an ip address' do
+      VCR.use_cassette('geolocation') do
+        redemption = FactoryGirl.create(:redemption, :real_ip)
+        expect(redemption.location.class).to eql(Geokit::GeoLoc)
+      end
+    end
+  end
 end
