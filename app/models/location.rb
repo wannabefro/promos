@@ -11,5 +11,15 @@ class Location
       end
       grouped_locations
     end
+
+    def date_information(redemptions)
+      grouped_dates = []
+      redemptions.group("date_trunc('day', redemptions.created_at)").count(:id).each do |k, v|
+        grouped_dates.push({date: k.strftime('%m-%e-%Y'), val: v})
+      end
+      grouped_dates.sort_by do |d|
+        d[:date]
+      end
+    end
   end
 end

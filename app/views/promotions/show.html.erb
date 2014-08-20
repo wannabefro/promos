@@ -1,24 +1,37 @@
-<div id='map'></div>
+<ul class="nav nav-pills">
+  <li class='active' id='#map-link'><a href='#'>World Map</a></li>
+  <li id='#date-link'><a href='#'>Date Data</a></li>
+</ul>
+<div id='graphic'></div>
 <p><%= redeemed(@promotion.codes) %> codes redeemed</p>
 
 <% content_for :extra_footer do %>
   <script>
+  var height = $(window).height() / 2;
 $(function() {
-    $('#map').height($(window).height() / 2);
-    $.getJSON('/promotions/<%= @promotion.slug %>', function(response) {
-    var map = new AmCharts.AmMap();
-    map.pathToImages = "../assets/maps/";
-    var dataProvider = {
-      map: "worldLow",
-      areas: response
-      }
-    map.dataProvider = dataProvider;
-    map.areasSettings = {
-      autoZoom: true,
-      selectedColor: "#CC0000"
-    };
-    map.write('map');
+    $('#graphic').height(height);
+    $('.nav-pills li').click(function(e) {
+      var target = e.target.parentElement;
+      if ($(target).hasClass('active')) {
+        return true;
+        } else {
+          $('.nav-pills li').removeClass('active');
+          $(target).addClass('active');
+          updateGraphic(target);
+        }
     });
+    makeMap('<%= raw(@locations) %>');
   });
+function updateGraphic(target) {
+  $('#graphic').html('');
+  switch(target.id) {
+    case '#map-link':
+      makeMap('<%= raw(@locations) %>');
+      break;
+    case '#date-link':
+      makeDates('<%= raw(@dates) %>');
+      break;
+  }
+}
   </script>
 <% end %>

@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require ammap
+//= require amcharts
+//= require serial
+//= require amstock
 //= require maps/worldLow
 //= require_tree .

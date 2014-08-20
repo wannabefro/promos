@@ -32,13 +32,9 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = Promotion.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json do
-        locations = @promotion.redemptions.pluck(:location)
-        render json: Location.map_information(locations)
-      end
-    end
+    locations = @promotion.redemptions.pluck(:location)
+    @locations = Location.map_information(locations).to_json
+    @dates = Location.date_information(@promotion.redemptions).to_json
   end
 
   def redeem
