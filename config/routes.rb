@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :promotions, only: [:index, :new, :create, :show]
+  resources :promotions, only: [:index, :new, :create, :show] do
+    member do
+      get :print
+    end
+  end
 
   root 'home#index'
 

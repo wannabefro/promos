@@ -37,6 +37,10 @@ class PromotionsController < ApplicationController
     @dates = Location.date_information(@promotion.redemptions).to_json
   end
 
+  def print
+    @promotion = Promotion.find(params[:id])
+  end
+
   def redeem
     @code = Code.where(token: params[:token]).take
     if @code.active?

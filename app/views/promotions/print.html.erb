@@ -1,0 +1,12 @@
+<h1>Print your Promo cards</h1>
+<% @promotion.active_codes.each do |code| %>
+  <div class='business-card'>
+    <div class='header'>
+      <h1 class='promotion-name'><%= @promotion.name %></h1>
+    </div>
+    <div class='content'>
+      <p class='promotion-code'>Your code is <%= code.token %></p>
+      <p class='promotion-redeem'>Redeem at <%= "www.promos.io/#{code.token}" %></p>
+    </div>
+  </div>
+<% end %>

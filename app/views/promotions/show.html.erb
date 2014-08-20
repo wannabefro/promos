@@ -4,6 +4,7 @@
 </ul>
 <div id='graphic'></div>
 <p><%= redeemed(@promotion.codes) %> codes redeemed</p>
+<li><%= link_to 'Print promotion cards', print_promotion_path(@promotion) %></li>
 
 <% content_for :extra_footer do %>
   <script>

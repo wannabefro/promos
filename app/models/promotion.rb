@@ -22,6 +22,10 @@ class Promotion < ActiveRecord::Base
 
   validates :code_quantity, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
 
+  def active_codes
+    codes.where(status: 1)
+  end
+
   def code_quantity
     @code_quantity.to_i
   end
