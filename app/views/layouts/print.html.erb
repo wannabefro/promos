@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Promo</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= yield :extra_head %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class='headers'>
+  <%= render partial: "shared/nav" %>
+  <%= render partial: "shared/flash_messages", flash: flash %> 
+</div>
+
+<div class='container'>
+  <%= yield %>
+  <%= yield :extra_footer %>
+</div>
+<%= yield :printable %>
+
+</body>
+</html>

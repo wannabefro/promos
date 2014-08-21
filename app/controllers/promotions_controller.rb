@@ -1,5 +1,6 @@
 class PromotionsController < ApplicationController
   before_action :user_signed_in?, except: [:redeem]
+  layout :resolve_layout
 
   def index
     @promotions = current_user.promotions
@@ -53,6 +54,14 @@ class PromotionsController < ApplicationController
   end
 
   private
+  def resolve_layout
+    case action_name
+    when 'print'
+      'print'
+    else
+      'application'
+    end
+  end
 
   def promotion_params
     params.require(:promotion).permit(:code_quantity, :name, :message, attachment_attributes: [:attachment])

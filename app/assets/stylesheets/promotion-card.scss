@@ -1,5 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:700,300);
 
+$roboto-slab: 'Roboto Slab', sans-serif;
+
+.business-cards {
+  display: none;
+}
+
 .business-card {
   box-sizing: border-box;
   width: 3.5in;
@@ -8,18 +14,30 @@
   text-align: center;
   background-color: #E74C3C;
   color: white;
-  font-family: 'Roboto Slab', sans-serif;
-  margin-bottom: 1in;
+  font-family: $roboto-slab;
+  margin-bottom: 1em;
   h1 {
     margin-top: 0;
   }
 
+
   > div {
     height: 50%;
   }
-
   .header {
     background-color: #2C3E50;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+  }
+
+  .content {
+    padding-top: 1em;
   }
 }
 
+@media print {
+  .preview-card {
+    display: none;
+  }
+}

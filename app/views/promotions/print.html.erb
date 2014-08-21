@@ -1,12 +1,22 @@
-<h1>Print your Promo cards</h1>
-<% @promotion.active_codes.each do |code| %>
-  <div class='business-card'>
-    <div class='header'>
-      <h1 class='promotion-name'><%= @promotion.name %></h1>
-    </div>
-    <div class='content'>
-      <p class='promotion-code'>Your code is <%= code.token %></p>
-      <p class='promotion-redeem'>Redeem at <%= "www.promos.io/#{code.token}" %></p>
-    </div>
-  </div>
+<% content_for :extra_head do %>
+  <style>
+    @media print {
+    .container, .headers {
+      display: none;
+    }
+    .business-cards {
+      display: block !important;
+    }
+    }
+  </style>
+<% end %>
+<h1>Print or Customise your Promo cards</h1>
+<div class='preview-card'>
+  <p>Preview of your promo card</p>
+  <%= render partial: "print_promo", locals: {code: @promotion.active_codes.limit(1).take} %>
+</div>
+<% content_for :printable do %>
+<div class='business-cards container'>
+  <%= render partial: "print_promo", collection: @promotion.active_codes, as: :code %>
+</div>
 <% end %>
