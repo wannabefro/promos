@@ -13,10 +13,10 @@
 <h1>Print or Customise your Promo cards</h1>
 <div class='preview-card'>
   <p>Preview of your promo card</p>
-  <%= render partial: "print_promo", locals: {code: @promotion.active_codes.limit(1).take} %>
+  <%= render partial: "print_promo", locals: {code: @promotion.active_codes.limit(1).take, card: @promotion.card} %>
 </div>
 <% content_for :printable do %>
 <div class='business-cards container'>
-  <%= render partial: "print_promo", collection: @promotion.active_codes, as: :code %>
+  <%= render partial: "print_promo", collection: @promotion.active_codes, as: :code, locals: {card: @promotion.card}%>
 </div>
 <% end %>
