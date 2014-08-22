@@ -22,6 +22,7 @@
     <%= f.input :content_text %>
     <%= f.input :header_color %>
     <%= f.input :content_color %>
+    <%= f.submit 'Update card', class: 'btn btn-primary' %>
   <% end %>
   <button class='reset btn btn-default'>Reset</button>
 </div>
@@ -78,7 +79,9 @@
       set_value(header_text, original_header_text);
       set_value(content_text, original_content_text);
       set_background_color(header, original_header_color);
+      $('#card_header_color').val(original_header_color);
       set_background_color(content, original_content_color);
+      $('#card_content_color').val(original_content_color);
     }
 
     function set_value(element, value, original) {

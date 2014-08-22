@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  before_validation :set_default_values, only: [:create]
+  before_validation :set_default_values, on: [:create]
   belongs_to :promotion
 
   validates_presence_of :header_color, :content_color, :header_text, :content_text, :promotion
