@@ -11,12 +11,55 @@
   </style>
 <% end %>
 <h1>Print or Customise your Promo cards</h1>
-<div class='preview-card'>
+<div class='row'>
+<div class='preview-card col-md-6'>
   <p>Preview of your promo card</p>
   <%= render partial: "print_promo", locals: {code: @promotion.active_codes.limit(1).take, card: @promotion.card} %>
+</div>
+<div class='customise-card col-md-6'>
+  <%= simple_form_for :card do |f| %>
+    <%= f.input :header_text %>
+    <%= f.input :content_text %>
+  <% end %>
+  <button class='reset btn btn-default'>Reset</button>
+</div>
 </div>
 <% content_for :printable do %>
 <div class='business-cards container'>
   <%= render partial: "print_promo", collection: @promotion.active_codes, as: :code, locals: {card: @promotion.card}%>
 </div>
+<% end %>
+
+<% content_for :extra_footer do %>
+  <script>
+    var header_text, content_text;
+    $(function() {
+        header_text = $('h1.promotion-name');
+        content_text = $('p.promotion-content');
+        $('.reset').click(restoreDefaults);
+        $('.customise-card form').on('input', function(e) {
+          switch (e.target.id) {
+          case 'card_header_text':
+            set_value(header_text, e.target.value, "<%= @promotion.card.header_text %>");
+            break;
+          case 'card_content_text':
+            set_value(content_text, e.target.value, "<%= @promotion.card.content_text %>");
+            break;
+          }
+        });
+    });
+
+    function restoreDefaults() {
+      set_value(header_text, '<%= @promotion.card.header_text %>');
+      set_value(content_text, '<%= @promotion.card.content_text %>');
+    }
+
+    function set_value(element, value, original) {
+      if (value.length <= 0) {
+        element.text(original);
+      } else {
+      element.text(value);
+      }
+    }
+  </script>
 <% end %>

@@ -35,7 +35,7 @@ $roboto-slab: 'Roboto Slab', sans-serif;
 }
 
 @media print {
-  .preview-card {
+  .preview-card, .customise-card {
     display: none;
   }
 }
