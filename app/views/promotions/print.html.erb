@@ -80,8 +80,10 @@
       set_value(content_text, original_content_text);
       set_background_color(header, original_header_color);
       $('#card_header_color').val(original_header_color);
+      $('#card_header_color').parent().find('.colorPicker-picker').css('background-color', original_header_color);
       set_background_color(content, original_content_color);
       $('#card_content_color').val(original_content_color);
+      $('#card_content_color').parent().find('.colorPicker-picker').css('background-color', original_content_color);
     }
 
     function set_value(element, value, original) {
