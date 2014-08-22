@@ -5,10 +5,10 @@ class CreateCards < ActiveRecord::Migration
       t.string :content_color, null: false, default: '#E74C3C'
       t.string :header_text, null: false
       t.string :content_text, null: false
-      t.integer :code_id, null: false
+      t.integer :promotion_id, null: false
 
       t.timestamps
     end
-    add_index :cards, :code_id
+    add_index :cards, :promotion_id
   end
 end

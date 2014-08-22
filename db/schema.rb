@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20140821233846) do
     t.string   "content_color", default: "#E74C3C", null: false
     t.string   "header_text",                       null: false
     t.string   "content_text",                      null: false
-    t.integer  "code_id",                           null: false
+    t.integer  "promotion_id",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "cards", ["code_id"], name: "index_cards_on_code_id", using: :btree
+  add_index "cards", ["promotion_id"], name: "index_cards_on_promotion_id", using: :btree
 
   create_table "codes", force: true do |t|
     t.integer  "promotion_id",                null: false

@@ -1,5 +1,8 @@
 class Promotion < ActiveRecord::Base
   extend FriendlyId
+  
+  after_create :create_card
+
   friendly_id :name, use: [:slugged, :finders]
 
   attr_accessor :code_quantity, :code_unique
@@ -9,6 +12,7 @@ class Promotion < ActiveRecord::Base
   has_many :attachments, as: :attachable
   has_many :codes, dependent: :destroy
   has_many :redemptions, through: :codes
+  has_one :card
 
   accepts_nested_attributes_for :attachments
   accepts_nested_attributes_for :codes
@@ -28,6 +32,12 @@ class Promotion < ActiveRecord::Base
 
   def code_quantity
     @code_quantity.to_i
+  end
+
+  private
+
+  def create_card
+    Card.create!(promotion: self)
   end
 
 end

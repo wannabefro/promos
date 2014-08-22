@@ -2,7 +2,6 @@ class Code < ActiveRecord::Base
   include Tokenable
   belongs_to :promotion
   has_many :redemptions
-  has_one :card
 
   enum status: { pending: 0, active: 1, redeemed: 2 }
 
