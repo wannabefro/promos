@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819140458) do
+ActiveRecord::Schema.define(version: 20140821233846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20140819140458) do
   end
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree
+
+  create_table "cards", force: true do |t|
+    t.string   "header_color",  default: "#2C3E50", null: false
+    t.string   "content_color", default: "#E74C3C", null: false
+    t.string   "header_text",                       null: false
+    t.string   "content_text",                      null: false
+    t.integer  "code_id",                           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards", ["code_id"], name: "index_cards_on_code_id", using: :btree
 
   create_table "codes", force: true do |t|
     t.integer  "promotion_id",                null: false
