@@ -17,9 +17,11 @@
   <%= render partial: "print_promo", locals: {code: @promotion.active_codes.limit(1).take, card: @promotion.card} %>
 </div>
 <div class='customise-card col-md-6'>
-  <%= simple_form_for :card do |f| %>
+  <%= simple_form_for @promotion.card do |f| %>
     <%= f.input :header_text %>
     <%= f.input :content_text %>
+    <%= f.input :header_color %>
+    <%= f.input :content_color %>
   <% end %>
   <button class='reset btn btn-default'>Reset</button>
 </div>
@@ -32,26 +34,51 @@
 
 <% content_for :extra_footer do %>
   <script>
-    var header_text, content_text;
+  var header_text, content_text, header, content,
+    original_header_text, original_content_text, original_header_color, original_content_color;
     $(function() {
-        header_text = $('h1.promotion-name');
-        content_text = $('p.promotion-content');
+        header_text = $('.preview-card h1.promotion-name');
+        content_text = $('.preview-card p.promotion-content');
+        header = $('.preview-card .header');
+        content = $('.preview-card .content');
+        original_header_text = "<%= @promotion.card.header_text %>";
+        original_content_text = "<%= @promotion.card.content_text %>";
+        original_header_color = "<%= @promotion.card.header_color %>";
+        original_content_color = "<%= @promotion.card.content_color %>";
+        $('#card_header_color, #card_content_color').colorPicker({
+          onColorChange: function(id, newValue) {
+            switch(id) {
+            case 'card_header_color':
+              set_background_color(header, newValue);
+              break;
+            case 'card_content_color':
+              set_background_color(content, newValue);
+              break;
+            }
+          }
+        });
         $('.reset').click(restoreDefaults);
         $('.customise-card form').on('input', function(e) {
           switch (e.target.id) {
           case 'card_header_text':
-            set_value(header_text, e.target.value, "<%= @promotion.card.header_text %>");
+            set_value(header_text, e.target.value, original_header_text);
             break;
           case 'card_content_text':
-            set_value(content_text, e.target.value, "<%= @promotion.card.content_text %>");
+            set_value(content_text, e.target.value, original_content_text);
             break;
           }
         });
     });
 
+    function set_background_color(element, value) {
+      element.css('background-color', value);
+    }
+
     function restoreDefaults() {
-      set_value(header_text, '<%= @promotion.card.header_text %>');
-      set_value(content_text, '<%= @promotion.card.content_text %>');
+      set_value(header_text, original_header_text);
+      set_value(content_text, original_content_text);
+      set_background_color(header, original_header_color);
+      set_background_color(content, original_content_color);
     }
 
     function set_value(element, value, original) {

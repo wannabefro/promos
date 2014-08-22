@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cards, only: [:update]
+
   root 'home#index'
 
   get '/:token', to: 'promotions#redeem', constraints: {token: /.{10}/}
